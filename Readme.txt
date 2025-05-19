@@ -1,8 +1,4 @@
-Após analisar o repositório [CaioRodrigoCEVDEV/portifolio](https://github.com/CaioRodrigoCEVDEV/portifolio), observei que ele utiliza o template **iPortfolio**, desenvolvido pela BootstrapMade. Este template é uma solução moderna e responsiva para a criação de portfólios online, ideal para desenvolvedores, designers e outros profissionais que desejam apresentar seus trabalhos de forma elegante.
 
-Atualmente, o repositório contém um arquivo `Readme.txt` com informações básicas sobre o template, mas carece de um `README.md` mais detalhado e estruturado. Abaixo, apresento uma sugestão de `README.md` que você pode utilizar para enriquecer a documentação do seu projeto:
-
----
 
 # Portfólio Pessoal – Caio Rodrigo
 
