@@ -4,7 +4,7 @@ Este repositório contém o código-fonte do meu portfólio pessoal, desenvolvid
 
 ## 📌 Visite o Portfólio
 
-Você pode acessar a versão online do portfólio [aqui](https://seu-usuario.github.io/portifolio/).
+Você pode acessar a versão online do portfólio [aqui]([https://seu-usuario.github.io/portifolio/](https://caiorodrigocev.com.br/)).
 
 ## 🧰 Tecnologias Utilizadas
 
