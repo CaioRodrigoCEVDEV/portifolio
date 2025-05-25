@@ -36,7 +36,7 @@ Este projeto utiliza o template [iPortfolio](https://bootstrapmade.com/iportfoli
 
 Para mais informações ou sugestões, sinta-se à vontade para entrar em contato:
 
-* Email: [seu-email@example.com](mailto:seu-email@example.com)
-* LinkedIn: [seu-perfil-linkedin](https://www.linkedin.com/in/seu-perfil-linkedin)
+* Email: [contato@caiorodrigocev.com.br](mailto:contato@caiorodrigocev.com.br)
+* LinkedIn: [Linkedin](https://www.linkedin.com/in/caio-rodrigo-17a502330/)
 
 
