@@ -1,1 +1,36 @@
 
+name: Deploy via SSH (git pull + systemctl)
+
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Preparar SSH e known_hosts
+        run: |
+          mkdir -p ~/.ssh && chmod 700 ~/.ssh
+          ssh-keyscan -p "${{ secrets.SSH_PORT_MYSERVER }}" "${{ secrets.SSH_HOST_MYSERVER }}" >> ~/.ssh/known_hosts
+          chmod 644 ~/.ssh/known_hosts
+
+      - name: Restaurar chave privada a partir de BASE64
+        run: |
+          echo "${{ secrets.SSH_PRIVATE_KEY_B64 }}" | base64 -d > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          # opcional: conferir fingerprint (só imprime, não vaza a chave)
+          ssh-keygen -lf ~/.ssh/id_ed25519 || true
+
+      - name: Executar deploy remoto
+        run: |
+          ssh -o StrictHostKeyChecking=no -o IdentitiesOnly=yes \
+              -i ~/.ssh/id_ed25519 \
+              -p "${{ secrets.SSH_PORT_MYSERVER }}" root@"${{ secrets.SSH_HOST_MYSERVER }}" '
+            set -euo pipefail
+            chmod +x /root/deployPortifolio.sh
+            /root/deployPortifolio.sh
+          '
