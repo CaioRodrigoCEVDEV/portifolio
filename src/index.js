@@ -18,4 +18,3 @@ app.get(["/", "/index"], (req, res) => {
 app.listen(port, () => {
   console.log(`Rodando na porta: ${port}`)
 })
- 
