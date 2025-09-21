@@ -20,15 +20,15 @@ jobs:
 
       - name: Restaurar chave privada a partir de BASE64
         run: |
-          echo "${{ secrets.SSH_PRIVATE_KEY_B64 }}" | base64 -d > ~/.ssh/id_ed25519
-          chmod 600 ~/.ssh/id_ed25519
+          echo "${{ secrets.SSH_PRIVATE_KEY_B64 }}" | base64 -d > ~/.ssh/id_rsa_caio
+          chmod 600 ~/.ssh/id_rsa_caio
           # opcional: conferir fingerprint (só imprime, não vaza a chave)
-          ssh-keygen -lf ~/.ssh/id_ed25519 || true
+          ssh-keygen -lf ~/.ssh/id_rsa_caio || true
 
       - name: Executar deploy remoto
         run: |
           ssh -o StrictHostKeyChecking=no -o IdentitiesOnly=yes \
-              -i ~/.ssh/id_ed25519 \
+              -i ~/.ssh/id_rsa_caio \
               -p "${{ secrets.SSH_PORT_MYSERVER }}" root@"${{ secrets.SSH_HOST_MYSERVER }}" '
             set -euo pipefail
             chmod +x /root/deployPortifolio.sh
