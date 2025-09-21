@@ -6,7 +6,6 @@ const port = 3003
 // raiz do projeto (um nível acima de /src)
 const ROOT = path.resolve(__dirname, "..");
 
-
 // estáticos
 app.use(express.static(path.join(ROOT, "public")));
 app.use("/public", express.static(path.join(ROOT, "public")));
