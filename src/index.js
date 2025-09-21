@@ -1,7 +1,7 @@
-const express = require('express')
+const express = require('express');
 const path = require("path");
-const app = express()
-const port = 3003
+const app = express();
+const port = 3003;
 
 // raiz do projeto (um nível acima de /src)
 const ROOT = path.resolve(__dirname, "..");
