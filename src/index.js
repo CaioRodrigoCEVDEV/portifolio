@@ -14,6 +14,10 @@ app.use("/public", express.static(path.join(ROOT, "public")));
 app.get(["/", "/index"], (req, res) => {
   res.sendFile(path.join(ROOT, "public/index.html"));
 });
+// rota para thanks.html
+app.get("/thanks", (req, res) => {
+  res.sendFile(path.join(ROOT, "public/thanks.html"));
+});
 //rota para 404
 app.use((req, res) => {
   res.status(404).sendFile(path.join(ROOT, "public/404.html"));
