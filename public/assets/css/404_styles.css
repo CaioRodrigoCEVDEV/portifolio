@@ -1,0 +1,124 @@
+/* Reset básico */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+/* Layout principal */
+#layoutError {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+#layoutError_content {
+  flex: 1;
+}
+
+#layoutError_footer {
+  margin-top: auto;
+}
+
+/* Container */
+.container,
+.container-fluid {
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 1rem;
+  max-width: 1140px;
+}
+
+/* Grid simplificado */
+.row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.justify-content-center {
+  justify-content: center;
+}
+
+.col-lg-6 {
+  width: 100%;
+  max-width: 600px;
+}
+
+/* Flex */
+.d-flex {
+  display: flex;
+}
+
+.align-items-center {
+  align-items: center;
+}
+
+.justify-content-between {
+  justify-content: space-between;
+}
+
+/* Espaçamentos */
+.mt-4 {
+  margin-top: 1.5rem;
+}
+
+.mb-4 {
+  margin-bottom: 1.5rem;
+}
+
+.me-1 {
+  margin-right: 0.25rem;
+}
+
+.py-4 {
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+}
+
+.px-4 {
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+/* Texto */
+.text-center {
+  text-align: center;
+}
+
+.lead {
+  font-size: 1.25rem;
+  font-weight: 300;
+}
+
+.small {
+  font-size: 0.875rem;
+}
+
+/* Background */
+.bg-light {
+  background-color: #f8f9fa;
+}
+
+/* Imagem */
+.img-error {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Link */
+a {
+  color: #0d6efd;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Ícone (fallback caso não carregue FontAwesome) */
+i {
+  font-style: normal;
+}

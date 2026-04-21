@@ -14,6 +14,10 @@ app.use("/public", express.static(path.join(ROOT, "public")));
 app.get(["/", "/index"], (req, res) => {
   res.sendFile(path.join(ROOT, "public/index.html"));
 });
+//rota para 404
+app.use((req, res) => {
+  res.status(404).sendFile(path.join(ROOT, "public/404.html"));
+});
 
 app.listen(port, () => {
   console.log(`Rodando na porta: ${port}`)
