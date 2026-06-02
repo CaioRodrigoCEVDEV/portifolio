@@ -1,42 +1,60 @@
-# Portfólio Pessoal – Caio Rodrigo
+# Portfólio — Caio Rodrigo
 
-Este repositório contém o código-fonte do meu portfólio pessoal, desenvolvido com base no template [iPortfolio](https://bootstrapmade.com/iportfolio-bootstrap-portfolio-websites-template/) da BootstrapMade. O objetivo deste projeto é apresentar minhas habilidades, projetos e experiências profissionais de forma clara e atrativa.
+Portfólio pessoal e profissional, com foco em **performance, SEO e arquitetura limpa**.
 
-## 📌 Visite o Portfólio
+🔗 Produção: [caiorodrigocev.com.br](https://caiorodrigocev.com.br/)
 
-Você pode acessar a versão online do portfólio [aqui](https://caiorodrigocev.com.br/).
+## Stack
 
-## 🧰 Tecnologias Utilizadas
+- HTML5 semântico
+- CSS3 moderno (variáveis, container queries, dark mode nativo, `prefers-reduced-motion`)
+- JavaScript vanilla (sem frameworks)
+- Node.js + Express (apenas para servir arquivos estáticos)
 
-* HTML5
-* CSS3
-* JavaScript
-* Bootstrap([GitHub][1])
+## Estrutura
 
-## 📁 Estrutura do Projeto
+```
+.
+├── public/                # Site estático (deploy-ready)
+│   ├── index.html         # Página principal
+│   ├── obrigado.html      # Página de agradecimento
+│   ├── 404.html           # Página de erro
+│   ├── sitemap.xml
+│   ├── robots.txt
+│   ├── site.webmanifest
+│   └── assets/
+│       ├── css/main.css
+│       ├── js/main.js
+│       ├── img/
+│       └── vendor/bootstrap-icons/
+├── src/index.js           # Servidor Express mínimo
+└── package.json
+```
 
-* `index.html`: Página principal do portfólio.
-* `thanks.html`: Página de agradecimento exibida após o envio de formulários.
-* `forms/`: Contém scripts relacionados ao envio de formulários.
-* `assets/`: Diretório com imagens, estilos e scripts utilizados no site.([GitHub][2])
+## Scripts
 
-## 🎨 Personalização
+```bash
+npm install   # instala dependências
+npm start     # roda em http://localhost:3003
+```
 
-O template foi adaptado para refletir minha identidade profissional, incluindo:
+## SEO
 
-* Atualização de informações pessoais e profissionais.
-* Inclusão de projetos desenvolvidos.
-* Customização de estilos e cores para alinhamento com minha marca pessoal.
+- Meta tags completas (`description`, `keywords`, `robots`, `canonical`)
+- Open Graph + Twitter Cards
+- JSON-LD com schema `Person` e `WebSite`
+- `sitemap.xml` e `robots.txt`
+- HTML semântico, `aria-*`, hierarquia de headings, `alt` em imagens
+- `preload` de imagem crítica e fonts com `display=swap`
 
-## 📄 Licença
+## Performance
 
-Este projeto utiliza o template [iPortfolio](https://bootstrapmade.com/iportfolio-bootstrap-portfolio-websites-template/) da BootstrapMade, que é disponibilizado sob a [licença da BootstrapMade](https://bootstrapmade.com/license/). Certifique-se de respeitar os termos de uso ao utilizar ou modificar este template.
+- Zero dependências de UI (sem Bootstrap, jQuery, etc.)
+- IntersectionObserver para reveal sob demanda
+- CSS com `contain`, `content-visibility` quando aplicável
+- Cache de estáticos com `immutable` para imagens/fontes
 
-## 📬 Contato
+## Contato
 
-Para mais informações ou sugestões, sinta-se à vontade para entrar em contato:
-
-* Email: [contato@caiorodrigocev.com.br](mailto:contato@caiorodrigocev.com.br)
-* LinkedIn: [Linkedin](https://www.linkedin.com/in/caio-rodrigo-17a502330/)
-
-
+- E-mail: [contato@caiorodrigocev.com.br](mailto:contato@caiorodrigocev.com.br)
+- LinkedIn: [caio-rodrigo-17a502330](https://www.linkedin.com/in/caio-rodrigo-17a502330/)

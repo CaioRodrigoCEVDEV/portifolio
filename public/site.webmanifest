@@ -1,0 +1,15 @@
+{
+  "name": "Caio Rodrigo — Portfólio",
+  "short_name": "Caio Rodrigo",
+  "description": "Desenvolvedor backend — Node.js, PostgreSQL, APIs REST e automação.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#0a0b10",
+  "theme_color": "#0a0b10",
+  "lang": "pt-BR",
+  "icons": [
+    { "src": "/assets/img/favicon.png", "sizes": "32x32", "type": "image/png" },
+    { "src": "/assets/img/apple-touch-icon.png", "sizes": "180x180", "type": "image/png" }
+  ]
+}
