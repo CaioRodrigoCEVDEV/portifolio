@@ -1,23 +1,40 @@
 :root {
-  --bg: #0a0b10;
-  --bg-elev: #11131b;
-  --bg-soft: #161924;
-  --surface: #1b1e2b;
-  --border: rgba(255, 255, 255, 0.08);
-  --border-strong: rgba(255, 255, 255, 0.14);
-  --text: #e6e8ee;
-  --text-soft: #a4a8b8;
-  --text-mute: #6b7080;
-  --accent: #7c5cff;
-  --accent-2: #00d4ff;
-  --accent-glow: rgba(124, 92, 255, 0.45);
-  --gradient: linear-gradient(135deg, #7c5cff 0%, #00d4ff 100%);
+  --bg-primary: #050A07;
+  --bg-secondary: #08110D;
+  --bg-card: #0D1B14;
+  --bg-card-hover: #10281C;
+  --border-primary: #1F3A2B;
+  --border-accent: #22C55E;
+  --text-primary: #F0FDF4;
+  --text-secondary: #BBF7D0;
+  --text-muted: #86A894;
+  --accent-primary: #22C55E;
+  --accent-secondary: #10B981;
+  --accent-tertiary: #84CC16;
+  --button-gradient: linear-gradient(135deg, #16A34A 0%, #22C55E 50%, #84CC16 100%);
+  --button-gradient-hover: linear-gradient(135deg, #15803D 0%, #16A34A 50%, #65A30D 100%);
+  --shadow-accent: 0 0 30px rgba(34, 197, 94, 0.25);
+  --shadow-green: 0 0 40px rgba(34, 197, 94, 0.35);
+  --bg: var(--bg-primary);
+  --bg-elev: var(--bg-card);
+  --bg-soft: var(--bg-secondary);
+  --surface: var(--bg-card-hover);
+  --border: rgba(31, 58, 43, 0.78);
+  --border-strong: var(--border-primary);
+  --text: var(--text-primary);
+  --text-soft: var(--text-secondary);
+  --text-mute: var(--text-muted);
+  --accent: var(--accent-secondary);
+  --accent-2: var(--accent-primary);
+  --accent-glow: rgba(34, 197, 94, 0.28);
+  --gradient: var(--button-gradient);
+  --on-accent: #041006;
   --radius: 14px;
   --radius-sm: 8px;
   --radius-lg: 22px;
-  --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.25);
-  --shadow-md: 0 12px 32px rgba(0, 0, 0, 0.35);
-  --shadow-glow: 0 0 0 1px var(--border), 0 20px 60px -20px var(--accent-glow);
+  --shadow-sm: 0 8px 20px rgba(0, 0, 0, 0.22);
+  --shadow-md: 0 20px 40px rgba(0, 0, 0, 0.3);
+  --shadow-glow: 0 0 0 1px var(--border), 0 20px 60px -24px rgba(34, 197, 94, 0.18);
   --container: 1200px;
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
   --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
@@ -56,8 +73,8 @@ body::before {
   inset: 0;
   z-index: -1;
   background:
-    radial-gradient(ellipse 80% 50% at 20% 0%, rgba(124, 92, 255, 0.15), transparent 60%),
-    radial-gradient(ellipse 60% 40% at 100% 30%, rgba(0, 212, 255, 0.10), transparent 60%);
+    radial-gradient(ellipse 80% 50% at 20% 0%, rgba(16, 185, 129, 0.14), transparent 60%),
+    radial-gradient(ellipse 60% 40% at 100% 30%, rgba(34, 197, 94, 0.1), transparent 60%);
   pointer-events: none;
 }
 
@@ -93,7 +110,7 @@ p { margin: 0; }
 
 ::selection {
   background: var(--accent);
-  color: #fff;
+  color: var(--text-primary);
 }
 
 :focus-visible {
@@ -155,14 +172,15 @@ p { margin: 0; }
 
 .btn-primary {
   background: var(--gradient);
-  color: #0a0b10;
+  color: var(--on-accent);
   font-weight: 600;
-  box-shadow: 0 8px 24px -8px var(--accent-glow);
+  box-shadow: 0 8px 24px -8px rgba(34, 197, 94, 0.28);
 }
 
 .btn-primary:hover {
+  background: var(--button-gradient-hover);
   transform: translateY(-2px);
-  box-shadow: 0 14px 36px -10px var(--accent-glow);
+  box-shadow: var(--shadow-accent), var(--shadow-green);
 }
 
 .btn-ghost {
@@ -190,7 +208,7 @@ p { margin: 0; }
   font-size: 0.75rem;
   letter-spacing: 0.04em;
   color: var(--text-soft);
-  background: var(--bg-soft);
+  background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 999px;
 }
@@ -202,7 +220,7 @@ p { margin: 0; }
   right: 0;
   z-index: 50;
   padding: 1rem 0;
-  background: rgba(10, 11, 16, 0.6);
+  background: rgba(5, 10, 7, 0.68);
   backdrop-filter: saturate(160%) blur(14px);
   -webkit-backdrop-filter: saturate(160%) blur(14px);
   border-bottom: 1px solid transparent;
@@ -211,7 +229,7 @@ p { margin: 0; }
 
 .site-header.is-scrolled {
   border-bottom-color: var(--border);
-  background: rgba(10, 11, 16, 0.85);
+  background: rgba(5, 10, 7, 0.86);
 }
 
 .site-header .container {
@@ -238,10 +256,10 @@ p { margin: 0; }
   background: var(--gradient);
   display: grid;
   place-items: center;
-  color: #0a0b10;
+  color: var(--on-accent);
   font-weight: 700;
   font-size: 0.9rem;
-  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.06), 0 8px 24px -10px var(--accent-glow);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.05), 0 8px 24px -10px rgba(34, 197, 94, 0.22);
 }
 
 .nav {
@@ -262,7 +280,7 @@ p { margin: 0; }
 .nav a:hover,
 .nav a.is-active {
   color: var(--text);
-  background: var(--bg-soft);
+  background: var(--surface);
 }
 
 .nav-cta {
@@ -332,7 +350,7 @@ p { margin: 0; }
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: #22c55e;
+  background: var(--accent-tertiary);
   box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.18);
   animation: pulse 2.4s var(--ease) infinite;
 }
@@ -463,6 +481,7 @@ p { margin: 0; }
 
 .socials a:hover {
   color: var(--text);
+  background: var(--surface);
   border-color: var(--accent);
   transform: translateY(-2px);
 }
@@ -523,7 +542,11 @@ p { margin: 0; }
   transition: border-color 0.2s var(--ease), color 0.2s var(--ease);
 }
 
-.chip:hover { border-color: var(--accent); color: var(--accent-2); }
+.chip:hover {
+  background: var(--surface);
+  border-color: var(--accent);
+  color: var(--accent-2);
+}
 
 .projects-grid {
   display: grid;
@@ -543,8 +566,8 @@ p { margin: 0; }
 
 .project:hover {
   transform: translateY(-4px);
-  border-color: var(--border-strong);
-  box-shadow: var(--shadow-md);
+  border-color: var(--border-accent);
+  box-shadow: var(--shadow-md), 0 0 0 1px rgba(34, 197, 94, 0.18);
 }
 
 .project-cover {
@@ -669,7 +692,10 @@ p { margin: 0; }
   transition: border-color 0.2s var(--ease);
 }
 
-.contact-item:hover { border-color: var(--border-strong); }
+.contact-item:hover {
+  background: var(--surface);
+  border-color: var(--border-strong);
+}
 
 .contact-item .icon {
   width: 42px;
@@ -782,7 +808,10 @@ p { margin: 0; }
   transform: translateY(0);
 }
 
-.scroll-top:hover { border-color: var(--accent); }
+.scroll-top:hover {
+  background: var(--surface);
+  border-color: var(--accent);
+}
 
 .reveal {
   opacity: 0;
@@ -820,7 +849,7 @@ p { margin: 0; }
   place-items: center;
   border-radius: 50%;
   background: var(--gradient);
-  color: #0a0b10;
+  color: var(--on-accent);
   font-size: 1.75rem;
   font-weight: 700;
 }

@@ -3,7 +3,7 @@ const express = require("express");
 require("dotenv").config();
 
 const app = express();
-const PORT = process.env.PORT || 3003;
+const PORT = Number(process.env.PORT || process.env.port) || 3003;
 const ROOT = path.resolve(__dirname, "..", "public");
 
 app.disable("x-powered-by");
