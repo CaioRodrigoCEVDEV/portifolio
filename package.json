@@ -2,7 +2,7 @@
   "name": "portfolio-caio-rodrigo",
   "version": "2.0.0",
   "private": true,
-  "description": "Portfólio pessoal de Caio Rodrigo — Desenvolvedor Backend",
+  "description": "Portfólio pessoal de Caio Rodrigo — Desenvolvedor",
   "main": "src/index.js",
   "scripts": {
     "start": "node src/index.js",
