@@ -6,8 +6,9 @@
   const nav    = $(".nav");
   const toggle = $(".menu-toggle");
   const links  = $$(".nav a");
-  const sections = links
-    .map(a => document.getElementById(a.getAttribute("href").slice(1)))
+  const sectionIds = ["sobre", "projetos", "trajetoria", "contato"];
+  const sections = sectionIds
+    .map(id => document.getElementById(id))
     .filter(Boolean);
 
   const onScroll = () => {
