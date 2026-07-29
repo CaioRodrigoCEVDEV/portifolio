@@ -818,9 +818,13 @@ p { margin: 0; }
 
 .site-footer {
   border-top: 1px solid var(--border);
-  padding: calc(1.25em * var(--section)) 0;
+  padding: 0.8rem 0;
   color: var(--text-mute);
   font-size: 0.875rem;
+}
+
+.site-footer .container {
+  gap: 0.3rem;
 }
 
 .site-footer .container {
