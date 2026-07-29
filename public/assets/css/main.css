@@ -1,13 +1,13 @@
 :root {
-  --bg-primary: #050A07;
-  --bg-secondary: #08110D;
-  --bg-card: #0D1B14;
-  --bg-card-hover: #10281C;
-  --border-primary: #1F3A2B;
+  --bg-primary: #07110B;
+  --bg-secondary: #0B1A13;
+  --bg-card: #11251B;
+  --bg-card-hover: #173323;
+  --border-primary: #294B38;
   --border-accent: #22C55E;
   --text-primary: #F0FDF4;
   --text-secondary: #BBF7D0;
-  --text-muted: #86A894;
+  --text-muted: #94B5A1;
   --accent-primary: #22C55E;
   --accent-secondary: #10B981;
   --accent-tertiary: #84CC16;
@@ -19,7 +19,7 @@
   --bg-elev: var(--bg-card);
   --bg-soft: var(--bg-secondary);
   --surface: var(--bg-card-hover);
-  --border: rgba(31, 58, 43, 0.78);
+  --border: rgba(41, 75, 56, 0.78);
   --border-strong: var(--border-primary);
   --text: var(--text-primary);
   --text-soft: var(--text-secondary);
@@ -220,7 +220,7 @@ p { margin: 0; }
   right: 0;
   z-index: 50;
   padding: 1rem 0;
-  background: rgba(5, 10, 7, 0.68);
+  background: rgba(7, 17, 11, 0.68);
   backdrop-filter: saturate(160%) blur(14px);
   -webkit-backdrop-filter: saturate(160%) blur(14px);
   border-bottom: 1px solid transparent;
@@ -229,7 +229,7 @@ p { margin: 0; }
 
 .site-header.is-scrolled {
   border-bottom-color: var(--border);
-  background: rgba(5, 10, 7, 0.86);
+  background: rgba(7, 17, 11, 0.86);
 }
 
 .site-header .container {
@@ -254,7 +254,7 @@ p { margin: 0; }
   height: 36px;
   flex-shrink: 0;
   border-radius: 10px;
-  background: linear-gradient(135deg, #0D1B14 0%, #10281C 100%);
+  background: linear-gradient(135deg, var(--bg-elev) 0%, var(--surface) 100%);
   border: 1px solid rgba(34, 197, 94, 0.35);
   display: flex;
   align-items: center;
@@ -596,14 +596,14 @@ p { margin: 0; }
 .project-cover-fiscal {
   background:
     radial-gradient(circle at top right, rgba(250, 204, 21, 0.18), transparent 28%),
-    linear-gradient(145deg, rgba(16, 40, 28, 0.98), rgba(5, 10, 7, 0.98));
+    linear-gradient(145deg, rgba(23, 51, 35, 0.98), rgba(7, 17, 11, 0.98));
 }
 
 .project-cover-fiscal::after {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(5, 10, 7, 0.08), rgba(5, 10, 7, 0.2));
+  background: linear-gradient(180deg, rgba(7, 17, 11, 0.08), rgba(7, 17, 11, 0.2));
   pointer-events: none;
 }
 
