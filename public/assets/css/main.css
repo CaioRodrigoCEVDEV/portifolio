@@ -818,9 +818,9 @@ p { margin: 0; }
 
 .site-footer {
   border-top: 1px solid var(--border);
-  padding: 2.5rem 0;
+  padding: calc(1.25em * var(--section)) 0;
   color: var(--text-mute);
-  font-size: 0.9rem;
+  font-size: 0.875rem;
 }
 
 .site-footer .container {
