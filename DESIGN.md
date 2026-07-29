@@ -3,7 +3,7 @@
 ## Direção visual
 - Tema escuro com base verde, contraste alto e aparência profissional.
 - Fundo principal em verde muito escuro, com gradientes sutis e brilho controlado.
-- Bordas finas, sombras suaves e cantos arredondados.
+- Bordas finas, sombras suaves e cantos retos em cards e botões.
 - Visual limpo, técnico e coerente com produto em produção.
 
 ## Tipografia
@@ -12,8 +12,9 @@
 - Labels técnicos e chips: `JetBrains Mono`.
 
 ## Componentes
-- `btn`: botão principal/ghost com formato pill.
+- `btn`: botão principal/ghost com cantos retos.
 - `tag`: selo pequeno para status e metadados.
+- `hero .eyebrow`: selo de disponibilidade com cantos retos.
 - `chip`: badge de tecnologia ou categoria.
 - `project`: card de projeto com cover 16:9 e corpo abaixo.
 
