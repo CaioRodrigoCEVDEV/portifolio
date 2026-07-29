@@ -1,0 +1,8 @@
+<div class="container">
+  <div class="footer-content">
+    <span id="year"></span> Caio Rodrigo
+    <nav aria-label="Social">
+      <a href="https://www.linkedin.com/in/cairo-rodrigo-17a502330/" target="_blank" rel="noopener noreferrer"><i class="bi bi-linkedin-fill"></i></a>
+      <a href="https://github.com/CairoRodroCEVDEV" target="_blank" rel="noopener noreferrer"><i class="bi bi-github-fill"></i></a>
+    </nav>
+  </div>
