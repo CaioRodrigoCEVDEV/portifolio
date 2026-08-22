@@ -35,6 +35,9 @@ app.use(express.static(ROOT, {
 app.get("/thanks", (_req, res) => res.redirect(301, "/obrigado"));
 app.get("/obrigado", (_req, res) => res.sendFile(path.join(ROOT, "obrigado.html")));
 
+app.get("/snack-retro/politica-de-privacidade", (_req, res) =>
+  res.sendFile(path.join(ROOT, "snack-retro", "politica-de-privacidade.html")));
+
 app.get("/sitemap.xml", (_req, res) => res.type("application/xml").sendFile(path.join(ROOT, "sitemap.xml")));
 app.get("/robots.txt",   (_req, res) => res.type("text/plain").sendFile(path.join(ROOT, "robots.txt")));
 
