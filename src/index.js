@@ -18,6 +18,7 @@ app.use(express.static(ROOT, {
   maxAge: "7d",
   immutable: false,
   etag: true,
+  redirect: false,
   setHeaders(res, file) {
     if (/\.(?:png|jpg|jpeg|webp|svg|woff2?|ttf|otf)$/i.test(file)) {
       res.setHeader("Cache-Control", "public, max-age=2592000, immutable");
@@ -35,6 +36,8 @@ app.use(express.static(ROOT, {
 app.get("/thanks", (_req, res) => res.redirect(301, "/obrigado"));
 app.get("/obrigado", (_req, res) => res.sendFile(path.join(ROOT, "obrigado.html")));
 
+app.get("/snack-retro", (_req, res) =>
+  res.sendFile(path.join(ROOT, "snack-retro", "index.html")));
 app.get("/snack-retro/politica-de-privacidade", (_req, res) =>
   res.sendFile(path.join(ROOT, "snack-retro", "politica-de-privacidade.html")));
 
