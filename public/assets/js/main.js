@@ -13,7 +13,7 @@
 
   const onScroll = () => {
     const y = window.scrollY;
-    header.classList.toggle("is-scrolled", y > 8);
+    header?.classList.toggle("is-scrolled", y > 8);
 
     const scrollTop = $(".scroll-top");
     if (scrollTop) scrollTop.classList.toggle("is-visible", y > 400);

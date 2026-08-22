@@ -932,7 +932,7 @@ p { margin: 0; }
 .error-page p  { color: var(--text-soft); margin-bottom: 2rem; }
 
 .legal-wrap {
-  padding: 8rem 0 5rem;
+  padding: 5rem 0 5rem;
   min-height: 80vh;
 }
 
@@ -1079,7 +1079,7 @@ p { margin: 0; }
 }
 
 .snack-hero {
-  padding: 8rem 0 4rem;
+  padding: 6rem 0 4rem;
   position: relative;
 }
 
@@ -1399,7 +1399,7 @@ p { margin: 0; }
     grid-template-columns: 1fr;
     gap: 2.5rem;
   }
-  .snack-hero { padding: 7rem 0 3rem; }
+  .snack-hero { padding: 5rem 0 3rem; }
   .snake-panel { min-height: 260px; }
 }
 
