@@ -1,4 +1,4 @@
-name: Deploy via SSH (git pull + systemctl)
+name: Deploy via SSH (script do repositório)
 
 on:
   push:
@@ -18,7 +18,7 @@ jobs:
 
       - name: Executar deploy remoto
         run: |
-          ssh -o StrictHostKeyChecking=no -p "${{ secrets.SSH_PORT_MYSERVER }}" root@"${{ secrets.SSH_HOST_MYSERVER }}" '
-            set -euo pipefail
-            /root/deployPortifolio.sh
-          '
+          ssh -o StrictHostKeyChecking=no \
+            -p "${{ secrets.SSH_PORT_MYSERVER }}" \
+            root@"${{ secrets.SSH_HOST_MYSERVER }}" \
+            'bash -s' < scripts/deploy.sh
