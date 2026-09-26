@@ -21,7 +21,6 @@ Portfólio pessoal e profissional, com foco em **performance, SEO e arquitetura 
 │   ├── 404.html           # Página de erro
 │   ├── sitemap.xml
 │   ├── robots.txt
-│   ├── site.webmanifest
 │   └── assets/
 │       ├── css/main.css
 │       ├── js/main.js
