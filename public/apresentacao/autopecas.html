@@ -149,6 +149,10 @@
 </head>
 <body class="presentation-page">
 
+  <!-- BUILD:CONFIG -->
+  <script type="application/json" id="presentation-config">{"segment":"autopecas","label":"Autopeças","segmentPhrase":"de autopeças","waText":"Olá, Caio! Vi a apresentação sobre presença digital para {empresa} e quero conversar."}</script>
+<!-- /BUILD:CONFIG -->
+
   <a class="skip-link" href="#main" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;">Pular para o conteúdo</a>
 
   <header class="site-header">
@@ -229,6 +233,23 @@
             </li>
           </ul>
         </aside>
+      </div>
+    </section>
+
+    <section class="section presentation-section presentation-personal" aria-labelledby="personal-title">
+      <div class="container">
+        <div class="presentation-personal-card reveal">
+          <span class="eyebrow">Ideia para sua empresa</span>
+          <h2 id="personal-title">Uma ideia pensada para a sua empresa</h2>
+          <p data-personal-intro>Esta apresentação mostra como uma empresa do seu segmento pode organizar sua presença digital em um endereço próprio.</p>
+          <p class="presentation-personal-company" data-company-only hidden>
+            Pensamos este exemplo considerando empresas como a <strong data-company-name></strong>.
+          </p>
+          <span class="presentation-company-chip" data-company-only hidden>
+            <i class="bi bi-building" aria-hidden="true"></i>
+            <span data-company-name></span>
+          </span>
+        </div>
       </div>
     </section>
 
@@ -326,6 +347,7 @@
           <span class="eyebrow">Demonstração</span>
           <h2 id="demo-title">Imagine sua empresa assim.</h2>
           <p>Um exemplo simples de como um site pode apresentar a sua empresa, seus produtos e o contato pelo WhatsApp.</p>
+          <p class="presentation-demo-personal" data-company-only hidden>Imagine algo assim para a <strong data-company-name></strong>.</p>
         </header>
 
         <!-- BUILD:TABS -->
@@ -583,7 +605,7 @@
       <div class="container">
         <div class="presentation-cta-box reveal">
           <span class="eyebrow">Vamos começar</span>
-          <h2 id="cta-title">Vamos colocar sua empresa na internet?</h2>
+          <h2 id="cta-title" data-cta-title>Vamos colocar sua empresa na internet?</h2>
           <p>Me conte um pouco sobre sua empresa e eu apresento uma solução que faça sentido para o seu momento.</p>
           <div class="presentation-actions">
             <a href="https://wa.me/5561995194930" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
@@ -630,6 +652,7 @@
     document.getElementById("year").textContent = new Date().getFullYear();
   </script>
   <script src="/assets/js/main.js" defer></script>
+  <script src="/assets/js/apresentacao.js" defer></script>
 
 </body>
 </html>

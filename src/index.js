@@ -38,17 +38,29 @@ app.get("/obrigado", (_req, res) => res.sendFile(path.join(ROOT, "obrigado.html"
 
 const APRESENTACAO_SEGMENTOS = new Set(["celulares", "autopecas", "assistencias"]);
 
+function sendApresentacao(req, res, file) {
+  // Variantes personalizadas (?empresa=...) não devem ser indexadas.
+  if (String(req.query.empresa || "").trim()) {
+    res.setHeader("X-Robots-Tag", "noindex, follow");
+  }
+  res.sendFile(file);
+}
+
 app.get("/apresentacao", (req, res) => {
   const segmento = String(req.query.segmento || "").toLowerCase();
-  if (APRESENTACAO_SEGMENTOS.has(segmento)) return res.redirect(301, `/apresentacao/${segmento}`);
-  res.sendFile(path.join(ROOT, "apresentacao.html"));
+  if (APRESENTACAO_SEGMENTOS.has(segmento)) {
+    const empresa = String(req.query.empresa || "");
+    const query = empresa ? `?empresa=${encodeURIComponent(empresa)}` : "";
+    return res.redirect(301, `/apresentacao/${segmento}${query}`);
+  }
+  sendApresentacao(req, res, path.join(ROOT, "apresentacao.html"));
 });
 
 app.get("/apresentacao/:segmento", (req, res) => {
   if (!APRESENTACAO_SEGMENTOS.has(req.params.segmento)) {
     return res.status(404).sendFile(path.join(ROOT, "404.html"));
   }
-  res.sendFile(path.join(ROOT, "apresentacao", `${req.params.segmento}.html`));
+  sendApresentacao(req, res, path.join(ROOT, "apresentacao", `${req.params.segmento}.html`));
 });
 
 app.get("/snack-retro", (_req, res) =>

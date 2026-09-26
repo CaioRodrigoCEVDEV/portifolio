@@ -26,6 +26,8 @@ const SEGMENTS = [
     serviceType: "Criação de sites, catálogos e presença digital para o setor de celulares",
     serviceDescription: "Criação de sites e catálogos para lojas e assistências de celulares que querem apresentar acessórios, serviços de conserto e facilitar o orçamento pelo WhatsApp.",
     breadcrumbName: "Celulares",
+    segmentPhrase: "de celulares",
+    waText: "Olá, Caio! Vi a apresentação sobre presença digital para {empresa} e quero conversar.",
     demo: {
       brand: "TechCell",
       initials: "TC",
@@ -55,6 +57,8 @@ const SEGMENTS = [
     serviceType: "Criação de sites, catálogos e presença digital para autopeças",
     serviceDescription: "Criação de sites e catálogos para lojas de autopeças que querem apresentar peças, organizar categorias e agilizar orçamentos pelo WhatsApp.",
     breadcrumbName: "Autopeças",
+    segmentPhrase: "de autopeças",
+    waText: "Olá, Caio! Vi a apresentação sobre presença digital para {empresa} e quero conversar.",
     demo: {
       brand: "AutoPeças Prime",
       initials: "AP",
@@ -84,6 +88,8 @@ const SEGMENTS = [
     serviceType: "Criação de sites, catálogos e presença digital para assistências técnicas",
     serviceDescription: "Criação de sites e catálogos para assistências técnicas que querem apresentar serviços, organizar informações e facilitar orçamentos pelo WhatsApp.",
     breadcrumbName: "Assistências",
+    segmentPhrase: "de assistência técnica",
+    waText: "Olá, Caio! Vi a apresentação sobre presença digital para {empresa} e quero conversar.",
     demo: {
       brand: "AssistTec",
       initials: "AT",
@@ -217,6 +223,16 @@ ${links}
         </nav>`;
 }
 
+function configBlock(seg) {
+  const config = {
+    segment: seg.slug,
+    label: seg.breadcrumbName,
+    segmentPhrase: seg.segmentPhrase,
+    waText: seg.waText
+  };
+  return `  <script type="application/json" id="presentation-config">${JSON.stringify(config)}</script>`;
+}
+
 function demoBlock(demo) {
   const nav = demo.nav.map(item => `                  <span>${item}</span>`).join("\n");
   const categories = demo.categories.map(item => `                <span>${item}</span>`).join("\n");
@@ -282,6 +298,7 @@ function build() {
   const written = [];
   for (const seg of SEGMENTS) {
     let out = replaceBlock(template, "HEAD", headBlock(seg));
+    out = replaceBlock(out, "CONFIG", configBlock(seg));
     out = replaceBlock(out, "TABS", tabsBlock(seg.slug));
     out = replaceBlock(out, "DEMO", demoBlock(seg.demo));
     const file = path.join(OUT_DIR, `${seg.slug}.html`);

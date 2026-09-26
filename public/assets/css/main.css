@@ -1989,6 +1989,73 @@ html:has(.presentation-page) {
   color: var(--text-mute);
 }
 
+/* --- Personalização por lead --- */
+.presentation-personal {
+  padding-top: 1rem;
+}
+
+.presentation-personal-card {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: clamp(1.5rem, 4vw, 2.5rem);
+  background: linear-gradient(180deg, var(--bg-elev) 0%, var(--bg) 100%);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent-2);
+  box-shadow: var(--shadow-sm);
+}
+
+.presentation-personal-card h2 {
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  margin: 0.6rem 0 0.85rem;
+  overflow-wrap: anywhere;
+}
+
+.presentation-personal-card p {
+  color: var(--text-soft);
+  font-size: 1.02rem;
+}
+
+.presentation-personal-company {
+  margin-top: 0.85rem;
+  color: var(--accent-2) !important;
+}
+
+.presentation-company-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  max-width: 100%;
+  margin-top: 1.25rem;
+  padding: 0.45rem 0.9rem;
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  color: var(--accent-2);
+  background: var(--bg-soft);
+  border: 1px solid var(--border);
+  overflow-wrap: anywhere;
+}
+
+.presentation-company-chip i {
+  flex-shrink: 0;
+}
+
+.presentation-demo-personal {
+  margin-top: 0.5rem;
+  color: var(--accent-2) !important;
+  font-size: 0.98rem;
+  overflow-wrap: anywhere;
+}
+
+.presentation-personal-card [data-company-name],
+.presentation-demo-personal [data-company-name] {
+  color: var(--text);
+  overflow-wrap: anywhere;
+}
+
+.presentation-cta-box [data-cta-title] {
+  overflow-wrap: anywhere;
+}
+
 /* --- Projetos --- */
 .presentation-projects {
   display: grid;
