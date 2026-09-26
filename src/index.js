@@ -1,6 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 const express = require("express");
+const { renderOgImage } = require("./og-image");
 require("dotenv").config();
 
 const app = express();
@@ -80,7 +81,7 @@ function escapeHtml(value) {
 
 // Injeta title/Open Graph/Twitter com o nome da empresa. Necessário porque o
 // crawler do WhatsApp/Facebook não executa JavaScript.
-function personalizeHead(html, empresa, url) {
+function personalizeHead(html, empresa, url, imageUrl) {
   const safe = escapeHtml(empresa);
   const title = `${safe} — Apresentação`;
   const description = `Uma ideia de presença digital pensada para a ${safe}. Exemplo ilustrativo.`;
@@ -93,12 +94,22 @@ function personalizeHead(html, empresa, url) {
   out = setMeta(out, 'property="og:description"', description);
   out = setMeta(out, 'name="twitter:description"', description);
   out = setMeta(out, 'property="og:url"', escapeHtml(url));
+  out = setMeta(out, 'property="og:image"', escapeHtml(imageUrl));
+  out = setMeta(out, 'name="twitter:image"', escapeHtml(imageUrl));
   out = setMeta(out, 'property="og:image:alt"', `Presença digital para ${safe}`);
   return out;
 }
 
-function sendApresentacao(req, res, file) {
+// Remove barras que quebrariam o segmento da URL da imagem.
+function imagePathName(empresa) {
+  return empresa.replace(/[\/\\]+/g, " ").replace(/\s+/g, " ").trim();
+}
+
+function sendApresentacao(req, res, segmento) {
   const empresa = normalizeEmpresa(req.query.empresa);
+  const file = segmento === "geral"
+    ? path.join(ROOT, "apresentacao.html")
+    : path.join(ROOT, "apresentacao", `${segmento}.html`);
 
   // Sem empresa: serve o arquivo estático exatamente como antes.
   if (!empresa) return res.sendFile(file);
@@ -108,7 +119,8 @@ function sendApresentacao(req, res, file) {
   res.setHeader("Cache-Control", "public, max-age=0, must-revalidate");
 
   const url = `${SITE_URL}${req.path}?empresa=${encodeURIComponent(empresa)}`;
-  res.type("html").send(personalizeHead(readHtml(file), empresa, url));
+  const imageUrl = `${SITE_URL}/og/${segmento}/${encodeURIComponent(imagePathName(empresa))}.png`;
+  res.type("html").send(personalizeHead(readHtml(file), empresa, url, imageUrl));
 }
 
 app.get("/apresentacao", (req, res) => {
@@ -118,14 +130,36 @@ app.get("/apresentacao", (req, res) => {
     const query = empresa ? `?empresa=${encodeURIComponent(empresa)}` : "";
     return res.redirect(301, `/apresentacao/${segmento}${query}`);
   }
-  sendApresentacao(req, res, path.join(ROOT, "apresentacao.html"));
+  sendApresentacao(req, res, "geral");
 });
 
 app.get("/apresentacao/:segmento", (req, res) => {
   if (!APRESENTACAO_SEGMENTOS.has(req.params.segmento)) {
     return res.status(404).sendFile(path.join(ROOT, "404.html"));
   }
-  sendApresentacao(req, res, path.join(ROOT, "apresentacao", `${req.params.segmento}.html`));
+  sendApresentacao(req, res, req.params.segmento);
+});
+
+const OG_SEGMENTOS = new Set(["geral", "celulares", "autopecas", "assistencias"]);
+
+// Imagem Open Graph personalizada por lead (o crawler não executa JS).
+app.get("/og/:segmento/:file", (req, res) => {
+  const segmento = req.params.segmento;
+  if (!OG_SEGMENTOS.has(segmento)) return res.status(404).end();
+
+  const fallback = path.join(ROOT, "assets", "img", "og", `${segmento}.png`);
+  const empresa = normalizeEmpresa(String(req.params.file || "").replace(/\.png$/i, ""));
+  if (!empresa) return res.sendFile(fallback);
+
+  try {
+    const png = renderOgImage(segmento, empresa);
+    res.setHeader("Content-Type", "image/png");
+    res.setHeader("Cache-Control", "public, max-age=31536000, immutable");
+    res.setHeader("X-Robots-Tag", "noindex");
+    res.send(png);
+  } catch (err) {
+    res.sendFile(fallback);
+  }
 });
 
 app.get("/snack-retro", (_req, res) =>
