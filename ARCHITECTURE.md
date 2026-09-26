@@ -13,7 +13,9 @@ O projeto é um portfólio estático servido por um servidor Express mínimo. A 
 - `public/assets/js/main.js`: interações da interface.
 - `public/assets/js/apresentacao.js`: personalização da apresentação por lead (`?empresa=...`).
 - `public/assets/img/`: imagens, screenshots e identidade visual.
+- `public/assets/img/og/`: imagens Open Graph por segmento (`build-og-images.sh`).
 - `scripts/build-apresentacao.js`: config central dos segmentos e gerador das páginas.
+- `scripts/build-og-images.sh`: gera as imagens OG (requer ImageMagick, não roda em produção).
 - `src/index.js`: servidor Express e headers básicos.
 
 ## Fluxo de renderização
@@ -40,6 +42,8 @@ O projeto é um portfólio estático servido por um servidor Express mínimo. A 
 - A demonstração é uma simulação: nome, domínio (`www.<slug>.com.br`) e e-mail (`contato@<slug>.com.br`) são ilustrativos, com legendas de "ilustrativo" e sem afirmar disponibilidade do domínio.
 - Funções centrais em `apresentacao.js`: `normalizeCompanyName`, `companyToSlug`, `companyToDomain`, `companyToEmail`, `companyInitials`.
 - Inserção sempre via `textContent`, com normalização, remoção de acentos/caracteres inválidos e limite de 60 caracteres (sem HTML vindo da URL).
+- Meta tags de preview: quando há `?empresa=`, o servidor (`personalizeHead` em `src/index.js`) injeta `<title>`, `og:title/description/url/image:alt` e `twitter:*` com o nome da empresa. Isso é necessário porque o crawler do WhatsApp/Facebook não executa JavaScript. O valor é escapado (`escapeHtml`) e o HTML é cacheado em memória por arquivo/mtime. Sem `?empresa=`, o arquivo estático é servido sem alteração.
+- Imagens Open Graph: uma por segmento em `public/assets/img/og/*.png` (1200x630), referenciadas pelo `headBlock` do build.
 - SEO: o canonical permanece na rota base do segmento e variantes com `?empresa=` recebem `X-Robots-Tag: noindex, follow` no servidor.
 - Estrutura preparada para futuros campos de CRM (`cidade`, `telefone`, `whatsapp`, `site`, `instagram`, `score`, `mensagem`), ainda não implementados.
 

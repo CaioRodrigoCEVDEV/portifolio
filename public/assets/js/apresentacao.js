@@ -134,6 +134,10 @@
   const ctaTitle = $("[data-cta-title]");
   if (ctaTitle) ctaTitle.textContent = "Vamos colocar a " + empresa + " na internet?";
 
+  /* ---------- Título da aba (o servidor também injeta para o preview) ---------- */
+
+  document.title = empresa + " — Apresentação";
+
   /* ---------- WhatsApp: mesma estrutura, com mensagem curta ---------- */
 
   const waText = String(config.waText || "")

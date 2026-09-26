@@ -1,3 +1,4 @@
+const fs = require("fs");
 const path = require("path");
 const express = require("express");
 require("dotenv").config();
@@ -40,13 +41,74 @@ app.get("/thanks", (_req, res) => res.redirect(301, "/obrigado"));
 app.get("/obrigado", (_req, res) => res.sendFile(path.join(ROOT, "obrigado.html")));
 
 const APRESENTACAO_SEGMENTOS = new Set(["celulares", "autopecas", "assistencias"]);
+const SITE_URL = "https://caiorodrigocev.com.br";
+const MAX_EMPRESA = 60;
+
+// Cache do HTML em memória, invalidado pela data de modificação do arquivo.
+const htmlCache = new Map();
+function readHtml(file) {
+  const mtime = fs.statSync(file).mtimeMs;
+  const key = `${file}:${mtime}`;
+  const cached = htmlCache.get(key);
+  if (cached) return cached;
+  const content = fs.readFileSync(file, "utf8");
+  for (const k of htmlCache.keys()) {
+    if (k.startsWith(`${file}:`)) htmlCache.delete(k);
+  }
+  htmlCache.set(key, content);
+  return content;
+}
+
+function normalizeEmpresa(raw) {
+  if (!raw) return "";
+  let value = String(raw)
+    .replace(/[\u0000-\u001F\u007F]/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+  if (value.length > MAX_EMPRESA) value = value.slice(0, MAX_EMPRESA).trim();
+  return value;
+}
+
+function escapeHtml(value) {
+  return String(value)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
+
+// Injeta title/Open Graph/Twitter com o nome da empresa. Necessário porque o
+// crawler do WhatsApp/Facebook não executa JavaScript.
+function personalizeHead(html, empresa, url) {
+  const safe = escapeHtml(empresa);
+  const title = `${safe} — Apresentação`;
+  const description = `Uma ideia de presença digital pensada para a ${safe}. Exemplo ilustrativo.`;
+  const setMeta = (source, attr, value) =>
+    source.replace(new RegExp(`(<meta[^>]*${attr}[^>]*content=")[^"]*(")`), `$1${value}$2`);
+
+  let out = html.replace(/<title>[\s\S]*?<\/title>/, `<title>${title}</title>`);
+  out = setMeta(out, 'property="og:title"', title);
+  out = setMeta(out, 'name="twitter:title"', title);
+  out = setMeta(out, 'property="og:description"', description);
+  out = setMeta(out, 'name="twitter:description"', description);
+  out = setMeta(out, 'property="og:url"', escapeHtml(url));
+  out = setMeta(out, 'property="og:image:alt"', `Presença digital para ${safe}`);
+  return out;
+}
 
 function sendApresentacao(req, res, file) {
+  const empresa = normalizeEmpresa(req.query.empresa);
+
+  // Sem empresa: serve o arquivo estático exatamente como antes.
+  if (!empresa) return res.sendFile(file);
+
   // Variantes personalizadas (?empresa=...) não devem ser indexadas.
-  if (String(req.query.empresa || "").trim()) {
-    res.setHeader("X-Robots-Tag", "noindex, follow");
-  }
-  res.sendFile(file);
+  res.setHeader("X-Robots-Tag", "noindex, follow");
+  res.setHeader("Cache-Control", "public, max-age=0, must-revalidate");
+
+  const url = `${SITE_URL}${req.path}?empresa=${encodeURIComponent(empresa)}`;
+  res.type("html").send(personalizeHead(readHtml(file), empresa, url));
 }
 
 app.get("/apresentacao", (req, res) => {

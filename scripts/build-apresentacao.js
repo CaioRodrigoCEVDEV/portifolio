@@ -115,6 +115,7 @@ function jsonBlock(value) {
 }
 
 function headBlock(seg) {
+  const ogImage = `https://caiorodrigocev.com.br/assets/img/og/${seg.slug}.png`;
   const service = {
     "@context": "https://schema.org",
     "@type": "Service",
@@ -175,15 +176,15 @@ function headBlock(seg) {
   <meta property="og:title" content="${seg.title}">
   <meta property="og:description" content="${seg.description}">
   <meta property="og:url" content="https://caiorodrigocev.com.br${seg.path}">
-  <meta property="og:image" content="https://caiorodrigocev.com.br/assets/img/sistema-pedidos.png">
+  <meta property="og:image" content="${ogImage}">
   <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="752">
-  <meta property="og:image:alt" content="Exemplo de sistema web em produção desenvolvido por Caio Rodrigo">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Apresentação de presença digital — ${seg.breadcrumbName}">
 
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="${seg.title}">
   <meta name="twitter:description" content="${seg.description}">
-  <meta name="twitter:image" content="https://caiorodrigocev.com.br/assets/img/sistema-pedidos.png">
+  <meta name="twitter:image" content="${ogImage}">
   <meta name="twitter:creator" content="@caiorodrigocev">
 
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon.png">
