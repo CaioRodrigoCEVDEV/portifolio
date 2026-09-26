@@ -56,7 +56,8 @@ O projeto é um portfólio estático servido por um servidor Express mínimo. A 
 
 ## Deploy
 - Um push na `main` dispara o workflow `deploy-ssh.yml`, que abre SSH no servidor e executa `scripts/deploy.sh` (enviado via `bash -s`).
-- O script: `systemctl stop` -> `git pull --ff-only origin main` -> `npm ci --omit=dev` -> `systemctl start`, com `trap` para religar o serviço mesmo em caso de falha.
+- O script: limpa os arquivos gerados -> `git pull --ff-only origin main` -> `npm ci --omit=dev` -> `npm run build:apresentacao` -> `systemctl start`, com `trap` para religar o serviço mesmo em caso de falha.
+- O build da apresentação no deploy é uma rede de segurança: regenera `public/apresentacao/*.html` a partir do template. A limpeza prévia evita que sobras de um build anterior travem o `git pull`.
 - Pode ser executado manualmente no servidor, a partir da raiz do projeto.
 
 ## UI sections
