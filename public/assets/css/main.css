@@ -1459,20 +1459,13 @@ html:has(.presentation-page) {
   overflow-x: hidden;
 }
 
-.presentation-brand-mark {
-  width: 36px;
-  height: 36px;
-  flex-shrink: 0;
-  display: grid;
-  place-items: center;
-  border: 1px solid rgba(34, 197, 94, 0.35);
-  background: linear-gradient(135deg, var(--bg-elev) 0%, var(--surface) 100%);
-  box-shadow: 0 0 18px rgba(34, 197, 94, 0.22);
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 0.85rem;
-  letter-spacing: 0.02em;
-  color: var(--accent-2);
+.presentation-brand [data-company-name] {
+  display: block;
+  min-width: 0;
+  max-width: 260px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 /* --- Hero --- */
@@ -2381,6 +2374,10 @@ html:has(.presentation-page) {
 
   .presentation-hero-tags {
     font-size: 0.78rem;
+  }
+
+  .presentation-brand [data-company-name] {
+    max-width: 50vw;
   }
 
   .presentation-mobile-cta {
