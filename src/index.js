@@ -105,6 +105,23 @@ function imagePathName(empresa) {
   return empresa.replace(/[\/\\]+/g, " ").replace(/\s+/g, " ").trim();
 }
 
+// Codifica o nome em base64url (apenas [A-Za-z0-9_-]) para que proxies/CDNs não
+// decodifiquem espaços (%20) no caminho e quebrem a requisição.
+function encodeNameParam(name) {
+  return "~" + Buffer.from(name, "utf8").toString("base64url");
+}
+
+function decodeNameParam(value) {
+  if (value.startsWith("~")) {
+    try {
+      return Buffer.from(value.slice(1), "base64url").toString("utf8");
+    } catch (_) {
+      return "";
+    }
+  }
+  return value; // compatibilidade com nomes simples (sem caracteres especiais)
+}
+
 function sendApresentacao(req, res, segmento) {
   const empresa = normalizeEmpresa(req.query.empresa);
   const file = segmento === "geral"
@@ -119,7 +136,7 @@ function sendApresentacao(req, res, segmento) {
   res.setHeader("Cache-Control", "public, max-age=0, must-revalidate");
 
   const url = `${SITE_URL}${req.path}?empresa=${encodeURIComponent(empresa)}`;
-  const imageUrl = `${SITE_URL}/og/${segmento}/${encodeURIComponent(imagePathName(empresa))}.png`;
+  const imageUrl = `${SITE_URL}/og/${segmento}/${encodeNameParam(imagePathName(empresa))}.png`;
   res.type("html").send(personalizeHead(readHtml(file), empresa, url, imageUrl));
 }
 
@@ -148,7 +165,8 @@ app.get("/og/:segmento/:file", (req, res) => {
   if (!OG_SEGMENTOS.has(segmento)) return res.status(404).end();
 
   const fallback = path.join(ROOT, "assets", "img", "og", `${segmento}.png`);
-  const empresa = normalizeEmpresa(String(req.params.file || "").replace(/\.png$/i, ""));
+  const rawName = decodeNameParam(String(req.params.file || "").replace(/\.png$/i, ""));
+  const empresa = normalizeEmpresa(rawName);
   if (!empresa) return res.sendFile(fallback);
 
   try {

@@ -49,7 +49,8 @@ O projeto é um portfólio estático servido por um servidor Express mínimo. A 
 - Inserção sempre via `textContent`, com normalização, remoção de acentos/caracteres inválidos e limite de 60 caracteres (sem HTML vindo da URL).
 - Meta tags de preview: quando há `?empresa=`, o servidor (`personalizeHead` em `src/index.js`) injeta `<title>`, `og:title/description/url/image:alt` e `twitter:*` com o nome da empresa. Isso é necessário porque o crawler do WhatsApp/Facebook não executa JavaScript. O valor é escapado (`escapeHtml`) e o HTML é cacheado em memória por arquivo/mtime. Sem `?empresa=`, o arquivo estático é servido sem alteração.
 - Imagens Open Graph: uma estática por segmento em `public/assets/img/og/*.png` (1200x630), usada quando não há `?empresa=`.
-- Imagem OG personalizada: com `?empresa=`, o servidor aponta `og:image`/`twitter:image` para `/og/<segmento>/<empresa>.png`, gerada em runtime por `src/og-image.js` (`@resvg/resvg-js` + fontes em `scripts/fonts/`), com cache em memória e fallback para a imagem estática. Exige `npm ci` no deploy.
+- Imagem OG personalizada: com `?empresa=`, o servidor aponta `og:image`/`twitter:image` para `/og/<segmento>/~<base64url>.png`, gerada em runtime por `src/og-image.js` (`@resvg/resvg-js` + fontes em `scripts/fonts/`), com cache em memória e fallback para a imagem estática. Exige `npm ci` no deploy.
+- O nome é codificado em base64url no segmento da URL (apenas `[A-Za-z0-9_-]`) para evitar que proxies/CDNs decodifiquem espaços (`%20`) no caminho e quebrem a requisição; o roteador também aceita nomes simples sem o prefixo `~` (compatibilidade).
 - SEO: o canonical permanece na rota base do segmento e variantes com `?empresa=` recebem `X-Robots-Tag: noindex, follow` no servidor.
 - Estrutura preparada para futuros campos de CRM (`cidade`, `telefone`, `whatsapp`, `site`, `instagram`, `score`, `mensagem`), ainda não implementados.
 
