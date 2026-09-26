@@ -134,18 +134,6 @@
   const ctaTitle = $("[data-cta-title]");
   if (ctaTitle) ctaTitle.textContent = "Vamos colocar a " + empresa + " na internet?";
 
-  /* ---------- Abas de segmento mantêm a empresa ao alternar ---------- */
-
-  $$(".presentation-segment-tab").forEach(tab => {
-    try {
-      const url = new URL(tab.getAttribute("href"), window.location.origin);
-      url.searchParams.set("empresa", empresa);
-      tab.setAttribute("href", url.pathname + "?" + url.searchParams.toString());
-    } catch (_) {
-      /* href inválido: mantém o original */
-    }
-  });
-
   /* ---------- WhatsApp: mesma estrutura, com mensagem curta ---------- */
 
   const waText = String(config.waText || "")

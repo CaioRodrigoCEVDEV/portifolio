@@ -1721,44 +1721,6 @@ html:has(.presentation-page) {
   word-break: break-all;
 }
 
-/* --- Abas de segmento --- */
-.presentation-segment-tabs {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.6rem;
-  margin-bottom: 1.75rem;
-}
-
-.presentation-segment-tab {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.6rem 1rem;
-  font-size: 0.9rem;
-  color: var(--text-soft);
-  background: var(--bg-elev);
-  border: 1px solid var(--border);
-  transition: color 0.2s var(--ease), border-color 0.2s var(--ease), background 0.2s var(--ease), transform 0.2s var(--ease);
-}
-
-.presentation-segment-tab i {
-  font-size: 1rem;
-  color: var(--accent-2);
-}
-
-.presentation-segment-tab:hover {
-  color: var(--text);
-  border-color: var(--accent-2);
-  transform: translateY(-2px);
-}
-
-.presentation-segment-tab.is-active {
-  color: var(--accent-2);
-  background: var(--surface);
-  border-color: var(--accent-2);
-  font-weight: 600;
-}
-
 /* --- Demonstração (Loja Modelo) --- */
 .presentation-demo-wrap {
   max-width: 960px;

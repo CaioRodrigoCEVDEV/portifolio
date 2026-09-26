@@ -35,7 +35,8 @@ O projeto é um portfólio estático servido por um servidor Express mínimo. A 
 - O segmento é definido pela rota e chega à página por uma config JSON (`#presentation-config`) emitida pelo build.
 - A empresa é opcional e vem da query string (`?empresa=...`), lida no client-side por `apresentacao.js`.
 - Empresa e segmento são independentes: o segmento controla produtos/categorias; a empresa controla a identificação visual.
-- Pontos personalizados: linha contextual no hero, frase da seção "Ideia para sua empresa", linha da demonstração, título do CTA, abas e links de WhatsApp.
+- Pontos personalizados: linha contextual no hero, frase da seção "Ideia para sua empresa", linha da demonstração, título do CTA e links de WhatsApp.
+- A troca de segmento é feita apenas por URL (ex.: `/apresentacao/assistencias`); não há botões/abas na tela.
 - A demonstração é uma simulação: nome, domínio (`www.<slug>.com.br`) e e-mail (`contato@<slug>.com.br`) são ilustrativos, com legendas de "ilustrativo" e sem afirmar disponibilidade do domínio.
 - Funções centrais em `apresentacao.js`: `normalizeCompanyName`, `companyToSlug`, `companyToDomain`, `companyToEmail`, `companyInitials`.
 - Inserção sempre via `textContent`, com normalização, remoção de acentos/caracteres inválidos e limite de 60 caracteres (sem HTML vindo da URL).

@@ -8,13 +8,6 @@ const PUBLIC = path.join(ROOT, "public");
 const TEMPLATE = path.join(PUBLIC, "apresentacao.html");
 const OUT_DIR = path.join(PUBLIC, "apresentacao");
 
-const TABS = [
-  { slug: null, path: "/apresentacao", label: "Geral", icon: "bi-shop" },
-  { slug: "celulares", path: "/apresentacao/celulares", label: "Celulares", icon: "bi-phone" },
-  { slug: "autopecas", path: "/apresentacao/autopecas", label: "Autopeças", icon: "bi-car-front" },
-  { slug: "assistencias", path: "/apresentacao/assistencias", label: "Assistências", icon: "bi-tools" }
-];
-
 const SEGMENTS = [
   {
     slug: "celulares",
@@ -212,20 +205,6 @@ ${jsonBlock(breadcrumb)}
   </script>`;
 }
 
-function tabsBlock(activeSlug) {
-  const links = TABS.map(t => {
-    const active = t.slug === activeSlug;
-    return `          <a class="presentation-segment-tab${active ? " is-active" : ""}" href="${t.path}"${active ? ' aria-current="page"' : ""}>
-            <i class="bi ${t.icon}" aria-hidden="true"></i>
-            ${t.label}
-          </a>`;
-  }).join("\n");
-
-  return `        <nav class="presentation-segment-tabs reveal" aria-label="Exemplos por segmento">
-${links}
-        </nav>`;
-}
-
 function configBlock(seg) {
   const config = {
     segment: seg.slug,
@@ -308,7 +287,6 @@ function build() {
   for (const seg of SEGMENTS) {
     let out = replaceBlock(template, "HEAD", headBlock(seg));
     out = replaceBlock(out, "CONFIG", configBlock(seg));
-    out = replaceBlock(out, "TABS", tabsBlock(seg.slug));
     out = replaceBlock(out, "DEMO", demoBlock(seg.demo));
     const file = path.join(OUT_DIR, `${seg.slug}.html`);
     fs.writeFileSync(file, out);
