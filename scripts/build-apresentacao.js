@@ -20,7 +20,7 @@ const SEGMENTS = [
     serviceDescription: "Criação de sites e catálogos para lojas e assistências de celulares que querem apresentar acessórios, serviços de conserto e facilitar o orçamento pelo WhatsApp.",
     breadcrumbName: "Celulares",
     segmentPhrase: "de celulares",
-    waText: "Olá, Caio! Vi a apresentação sobre presença digital para {empresa} e quero conversar.",
+    waText: "Gostei da apresentação, vamos conversar!",
     demo: {
       brand: "TechCell",
       initials: "TC",
@@ -52,7 +52,7 @@ const SEGMENTS = [
     serviceDescription: "Criação de sites e catálogos para lojas de autopeças que querem apresentar peças, organizar categorias e agilizar orçamentos pelo WhatsApp.",
     breadcrumbName: "Autopeças",
     segmentPhrase: "de autopeças",
-    waText: "Olá, Caio! Vi a apresentação sobre presença digital para {empresa} e quero conversar.",
+    waText: "Gostei da apresentação, vamos conversar!",
     demo: {
       brand: "AutoPeças Prime",
       initials: "AP",
@@ -84,7 +84,7 @@ const SEGMENTS = [
     serviceDescription: "Criação de sites e catálogos para assistências técnicas que querem apresentar serviços, organizar informações e facilitar orçamentos pelo WhatsApp.",
     breadcrumbName: "Assistências",
     segmentPhrase: "de assistência técnica",
-    waText: "Olá, Caio! Vi a apresentação sobre presença digital para {empresa} e quero conversar.",
+    waText: "Gostei da apresentação, vamos conversar!",
     demo: {
       brand: "AssistTec",
       initials: "AT",
