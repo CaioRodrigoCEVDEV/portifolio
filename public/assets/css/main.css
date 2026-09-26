@@ -1804,6 +1804,8 @@ html:has(.presentation-page) {
   font-family: var(--font-mono);
   font-size: 0.78rem;
   color: var(--text-mute);
+  min-width: 0;
+  overflow-wrap: anywhere;
 }
 
 .presentation-demo-header {
@@ -1820,20 +1822,42 @@ html:has(.presentation-page) {
   display: inline-flex;
   align-items: center;
   gap: 0.6rem;
+  min-width: 0;
   font-family: var(--font-display);
   font-weight: 600;
   font-size: 0.98rem;
 }
 
-.presentation-demo-logo > span {
+.presentation-demo-logo > [data-demo-initials] {
   width: 32px;
   height: 32px;
+  flex-shrink: 0;
   display: grid;
   place-items: center;
   background: var(--gradient);
   color: var(--on-accent);
   font-size: 0.78rem;
   font-weight: 700;
+}
+
+.presentation-demo-brand-wrap {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  line-height: 1.15;
+}
+
+.presentation-demo-brand {
+  color: var(--text-primary);
+  overflow-wrap: anywhere;
+}
+
+.presentation-demo-tagline {
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  color: var(--text-mute);
 }
 
 .presentation-demo-nav {
@@ -2018,25 +2042,27 @@ html:has(.presentation-page) {
 .presentation-personal-company {
   margin-top: 0.85rem;
   color: var(--accent-2) !important;
-}
-
-.presentation-company-chip {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  max-width: 100%;
-  margin-top: 1.25rem;
-  padding: 0.45rem 0.9rem;
-  font-family: var(--font-mono);
-  font-size: 0.82rem;
-  color: var(--accent-2);
-  background: var(--bg-soft);
-  border: 1px solid var(--border);
   overflow-wrap: anywhere;
 }
 
-.presentation-company-chip i {
-  flex-shrink: 0;
+.presentation-hero-company {
+  margin-top: 1rem;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  letter-spacing: 0.02em;
+  color: var(--accent-2);
+  overflow-wrap: anywhere;
+}
+
+.presentation-id-note {
+  display: block;
+  margin-top: 1rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-mute);
+  overflow-wrap: anywhere;
 }
 
 .presentation-demo-personal {
@@ -2047,6 +2073,7 @@ html:has(.presentation-page) {
 }
 
 .presentation-personal-card [data-company-name],
+.presentation-hero-company [data-company-name],
 .presentation-demo-personal [data-company-name] {
   color: var(--text);
   overflow-wrap: anywhere;

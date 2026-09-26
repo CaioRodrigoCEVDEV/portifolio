@@ -32,6 +32,7 @@ const SEGMENTS = [
       brand: "TechCell",
       initials: "TC",
       site: "www.techcell.com.br",
+      tagline: "Celulares, acessórios e assistência",
       nav: ["Início", "Serviços", "Contato"],
       kicker: "Atendimento rápido",
       bannerTitle: "Seu celular novo de novo, com conserto e acessórios.",
@@ -63,6 +64,7 @@ const SEGMENTS = [
       brand: "AutoPeças Prime",
       initials: "AP",
       site: "www.autopecasprime.com.br",
+      tagline: "Peças, motor, freios e suspensão",
       nav: ["Início", "Peças", "Contato"],
       kicker: "Peça certa, sem enrolação",
       bannerTitle: "Encontre a peça ideal com atendimento de confiança.",
@@ -94,6 +96,7 @@ const SEGMENTS = [
       brand: "AssistTec",
       initials: "AT",
       site: "www.assisttec.com.br",
+      tagline: "Conserto de eletrônicos e eletrodomésticos",
       nav: ["Início", "Serviços", "Contato"],
       kicker: "Conserto especializado",
       bannerTitle: "Conserto com agilidade e garantia no serviço.",
@@ -244,15 +247,21 @@ function demoBlock(demo) {
                 </article>`).join("\n");
 
   return `        <div class="presentation-demo-wrap reveal">
-          <div class="presentation-demo" role="img" aria-label="Exemplo de site de uma empresa fictícia chamada ${demo.brand}, com cabeçalho, destaque, categorias, produtos, contato e botão de WhatsApp">
+          <div class="presentation-demo" role="img" aria-label="Exemplo ilustrativo de site, com cabeçalho, destaque, categorias, produtos, contato e botão de WhatsApp">
             <div class="presentation-demo-bar">
               <span class="presentation-demo-dots" aria-hidden="true"><i></i><i></i><i></i></span>
-              <span class="presentation-demo-url">${demo.site}</span>
+              <span class="presentation-demo-url" data-demo-domain>${demo.site}</span>
             </div>
 
             <div class="presentation-demo-site">
               <div class="presentation-demo-header">
-                <span class="presentation-demo-logo"><span aria-hidden="true">${demo.initials}</span> ${demo.brand}</span>
+                <span class="presentation-demo-logo">
+                  <span aria-hidden="true" data-demo-initials>${demo.initials}</span>
+                  <span class="presentation-demo-brand-wrap">
+                    <span class="presentation-demo-brand" data-demo-brand>${demo.brand}</span>
+                    <span class="presentation-demo-tagline">${demo.tagline}</span>
+                  </span>
+                </span>
                 <nav class="presentation-demo-nav" aria-hidden="true">
 ${nav}
                 </nav>

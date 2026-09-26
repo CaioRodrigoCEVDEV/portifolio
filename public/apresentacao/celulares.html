@@ -205,6 +205,9 @@
             </a>
           </div>
           <p class="presentation-hero-tags">Sites &bull; Catálogos &bull; Domínio próprio &bull; WhatsApp</p>
+          <p class="presentation-hero-company" data-company-only hidden>
+            Uma ideia pensada para a <strong data-company-name></strong>.
+          </p>
         </div>
 
         <aside class="presentation-id-card reveal" aria-label="Exemplo de presença digital para uma empresa">
@@ -214,14 +217,14 @@
               <span class="presentation-id-icon" aria-hidden="true"><i class="bi bi-globe2"></i></span>
               <div>
                 <span class="presentation-id-key">Endereço próprio</span>
-                <span class="presentation-id-val">www.suaempresa.com.br</span>
+                <span class="presentation-id-val" data-demo-domain>www.suaempresa.com.br</span>
               </div>
             </li>
             <li>
               <span class="presentation-id-icon" aria-hidden="true"><i class="bi bi-envelope-at"></i></span>
               <div>
                 <span class="presentation-id-key">E-mail profissional</span>
-                <span class="presentation-id-val">contato@suaempresa.com.br</span>
+                <span class="presentation-id-val" data-demo-email>contato@suaempresa.com.br</span>
               </div>
             </li>
             <li>
@@ -232,6 +235,7 @@
               </div>
             </li>
           </ul>
+          <span class="presentation-id-note" data-company-only hidden>Endereço e e-mail ilustrativos</span>
         </aside>
       </div>
     </section>
@@ -242,13 +246,7 @@
           <span class="eyebrow">Ideia para sua empresa</span>
           <h2 id="personal-title">Uma ideia pensada para a sua empresa</h2>
           <p data-personal-intro>Esta apresentação mostra como uma empresa do seu segmento pode organizar sua presença digital em um endereço próprio.</p>
-          <p class="presentation-personal-company" data-company-only hidden>
-            Pensamos este exemplo considerando empresas como a <strong data-company-name></strong>.
-          </p>
-          <span class="presentation-company-chip" data-company-only hidden>
-            <i class="bi bi-building" aria-hidden="true"></i>
-            <span data-company-name></span>
-          </span>
+          <p class="presentation-personal-company" data-personal-example>Pensamos este exemplo para empresas do segmento.</p>
         </div>
       </div>
     </section>
@@ -322,14 +320,14 @@
             <span class="presentation-solution-icon" aria-hidden="true"><i class="bi bi-globe2"></i></span>
             <h3>Domínio próprio</h3>
             <p>Tenha um endereço profissional para a sua empresa na internet.</p>
-            <span class="presentation-example">www.suaempresa.com.br</span>
+            <span class="presentation-example" data-demo-domain>www.suaempresa.com.br</span>
           </article>
 
           <article class="presentation-solution reveal">
             <span class="presentation-solution-icon" aria-hidden="true"><i class="bi bi-envelope-at"></i></span>
             <h3>E-mail profissional</h3>
             <p>Passe mais confiança usando um e-mail com o domínio da empresa.</p>
-            <span class="presentation-example">contato@suaempresa.com.br</span>
+            <span class="presentation-example" data-demo-email>contato@suaempresa.com.br</span>
           </article>
 
           <article class="presentation-solution reveal">
@@ -373,15 +371,21 @@
 
         <!-- BUILD:DEMO -->
         <div class="presentation-demo-wrap reveal">
-          <div class="presentation-demo" role="img" aria-label="Exemplo de site de uma empresa fictícia chamada TechCell, com cabeçalho, destaque, categorias, produtos, contato e botão de WhatsApp">
+          <div class="presentation-demo" role="img" aria-label="Exemplo ilustrativo de site, com cabeçalho, destaque, categorias, produtos, contato e botão de WhatsApp">
             <div class="presentation-demo-bar">
               <span class="presentation-demo-dots" aria-hidden="true"><i></i><i></i><i></i></span>
-              <span class="presentation-demo-url">www.techcell.com.br</span>
+              <span class="presentation-demo-url" data-demo-domain>www.techcell.com.br</span>
             </div>
 
             <div class="presentation-demo-site">
               <div class="presentation-demo-header">
-                <span class="presentation-demo-logo"><span aria-hidden="true">TC</span> TechCell</span>
+                <span class="presentation-demo-logo">
+                  <span aria-hidden="true" data-demo-initials>TC</span>
+                  <span class="presentation-demo-brand-wrap">
+                    <span class="presentation-demo-brand" data-demo-brand>TechCell</span>
+                    <span class="presentation-demo-tagline">Celulares, acessórios e assistência</span>
+                  </span>
+                </span>
                 <nav class="presentation-demo-nav" aria-hidden="true">
                   <span>Início</span>
                   <span>Serviços</span>
