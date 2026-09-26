@@ -20,6 +20,9 @@ const SEGMENTS = [
     serviceDescription: "Criação de sites e catálogos para lojas e assistências de celulares que querem apresentar acessórios, serviços de conserto e facilitar o orçamento pelo WhatsApp.",
     breadcrumbName: "Celulares",
     segmentPhrase: "de celulares",
+    heroEyebrow: "Celulares e acessórios",
+    heroTitle: "Um catálogo online próprio para a sua loja de celulares.",
+    heroLead: "Apresente celulares e acessórios, facilite o contato com seus clientes e reúna as informações da sua loja em um só lugar.",
     waText: "Gostei da apresentação, vamos conversar!",
     demo: {
       brand: "TechCell",
@@ -52,6 +55,9 @@ const SEGMENTS = [
     serviceDescription: "Criação de sites e catálogos para lojas de autopeças que querem apresentar peças, organizar categorias e agilizar orçamentos pelo WhatsApp.",
     breadcrumbName: "Autopeças",
     segmentPhrase: "de autopeças",
+    heroEyebrow: "Autopeças e peças automotivas",
+    heroTitle: "Um catálogo online próprio para a sua loja de autopeças.",
+    heroLead: "Apresente peças e categorias, agilize orçamentos e reúna as informações da sua loja em um só lugar.",
     waText: "Gostei da apresentação, vamos conversar!",
     demo: {
       brand: "AutoPeças Prime",
@@ -84,6 +90,9 @@ const SEGMENTS = [
     serviceDescription: "Criação de sites e catálogos para assistências técnicas que querem apresentar serviços, organizar informações e facilitar orçamentos pelo WhatsApp.",
     breadcrumbName: "Assistências",
     segmentPhrase: "de assistência técnica",
+    heroEyebrow: "Assistência técnica",
+    heroTitle: "Uma página própria para a sua assistência técnica.",
+    heroLead: "Apresente seus serviços, facilite orçamentos e reúna as informações da sua assistência em um só lugar.",
     waText: "Gostei da apresentação, vamos conversar!",
     demo: {
       brand: "AssistTec",
@@ -210,6 +219,9 @@ function configBlock(seg) {
     segment: seg.slug,
     label: seg.breadcrumbName,
     segmentPhrase: seg.segmentPhrase,
+    heroEyebrow: seg.heroEyebrow,
+    heroTitle: seg.heroTitle,
+    heroLead: seg.heroLead,
     waText: seg.waText
   };
   return `  <script type="application/json" id="presentation-config">${JSON.stringify(config)}</script>`;

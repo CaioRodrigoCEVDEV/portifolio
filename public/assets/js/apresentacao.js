@@ -1,13 +1,13 @@
 /*
- * Personalização da apresentação comercial.
+ * Personalização da apresentação comercial (prospecção via WhatsApp).
  *
  * Parâmetros suportados hoje (client-side, via query string):
- *   - empresa: nome do lead, opcional (ex.: ?empresa=Smartcell)
+ *   - empresa: nome do lead, opcional (ex.: ?empresa=Xanin%20Importados)
  *
- * O segmento continua definido pela rota (/apresentacao/celulares etc.) e
- * chega à página pela config JSON emitida no build (scripts/build-apresentacao.js).
- * Empresa e segmento são dimensões independentes: o segmento define produtos e
- * categorias; a empresa define apenas a identificação visual (nome, domínio e
+ * O segmento é definido pela rota (/apresentacao/celulares etc.) e chega à
+ * página pela config JSON emitida no build (scripts/build-apresentacao.js).
+ * Empresa e segmento são dimensões independentes: o segmento define a copy do
+ * hero, o mockup e os textos; a empresa define a identificação (nome, domínio e
  * e-mail ilustrativos), sempre de forma demonstrativa.
  *
  * Preparado para o futuro CRM (ainda não implementado no front):
@@ -25,6 +25,11 @@
 
   const $ = (sel, ctx = document) => ctx.querySelector(sel);
   const $$ = (sel, ctx = document) => Array.from(ctx.querySelectorAll(sel));
+  const setText = (sel, value) => {
+    if (!value) return;
+    const el = $(sel);
+    if (el) el.textContent = value;
+  };
 
   let config = {};
   try {
@@ -34,7 +39,6 @@
     config = {};
   }
 
-  const segmentPhrase = config.segmentPhrase || "do seu segmento";
   document.body.dataset.segment = config.segment || "geral";
 
   /* ---------- Funções reutilizáveis de normalização ---------- */
@@ -79,19 +83,16 @@
     return (words[0][0] + words[1][0]).toUpperCase();
   }
 
-  /* ---------- Texto de abertura (sempre, por segmento) ---------- */
+  /* ---------- Copy do segmento (sempre, sem depender de ?empresa) ---------- */
 
-  const intro = $("[data-personal-intro]");
-  if (intro) {
-    intro.textContent =
-      "Esta apresentação mostra como uma empresa " + segmentPhrase +
-      " pode organizar sua presença digital em um endereço próprio.";
-  }
+  setText("[data-hero-eyebrow]", config.heroEyebrow);
+  setText("[data-hero-title]", config.heroTitle);
+  setText("[data-hero-lead]", config.heroLead);
 
   const params = new URLSearchParams(window.location.search);
   const empresa = normalizeCompanyName(params.get("empresa"));
 
-  // Sem empresa: a página permanece genérica (sem identificação dinâmica).
+  // Sem empresa: mantém a copy do segmento (nada de identificação dinâmica).
   if (!empresa) return;
 
   document.body.dataset.empresa = empresa;
@@ -106,12 +107,14 @@
     el.hidden = false;
   });
 
-  const example = $("[data-personal-example]");
-  if (example) {
-    example.textContent = "Pensamos este exemplo considerando a " + empresa + ".";
-  }
+  // Hero passa a priorizar a empresa do lead.
+  setText("[data-hero-title]", "Uma ideia pensada para a " + empresa);
 
-  /* ---------- Demonstração (mockup) ---------- */
+  // Demonstração personalizada.
+  setText(
+    "[data-demo-title]",
+    "Imagine a " + empresa + " com produtos, informações e contato reunidos em um único endereço."
+  );
 
   const domain = companyToDomain(empresa);
   const email = companyToEmail(empresa);
@@ -131,8 +134,7 @@
 
   /* ---------- CTA final ---------- */
 
-  const ctaTitle = $("[data-cta-title]");
-  if (ctaTitle) ctaTitle.textContent = "Vamos colocar a " + empresa + " na internet?";
+  setText("[data-cta-title]", "Vamos conversar sobre a " + empresa + "?");
 
   /* ---------- Título da aba (o servidor também injeta para o preview) ---------- */
 
