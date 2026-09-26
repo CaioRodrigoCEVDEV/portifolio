@@ -5,6 +5,8 @@ O projeto é um portfólio estático servido por um servidor Express mínimo. A 
 
 ## Estrutura principal
 - `public/index.html`: página principal do portfólio.
+- `public/apresentacao.html`: apresentação comercial (versão genérica) e template dos segmentos.
+- `public/apresentacao/*.html`: versões por segmento (celulares, autopeças, assistências), geradas por `scripts/build-apresentacao.js`.
 - `public/obrigado.html`: tela de confirmação do formulário.
 - `public/404.html`: página de erro personalizada.
 - `public/assets/css/main.css`: tema, layout, componentes e responsividade.
@@ -22,6 +24,8 @@ O projeto é um portfólio estático servido por um servidor Express mínimo. A 
 - `/` e `/index` -> `index.html`.
 - `/thanks` -> redirect 301 para `/obrigado`.
 - `/obrigado` -> `obrigado.html`.
+- `/apresentacao` -> `apresentacao.html` (aceita `?segmento=...`, que redireciona 301 para a rota limpa).
+- `/apresentacao/celulares`, `/apresentacao/autopecas`, `/apresentacao/assistencias` -> páginas de segmento.
 - `/sitemap.xml` e `/robots.txt` -> arquivos estáticos.
 - Qualquer outra rota -> `404.html`.
 

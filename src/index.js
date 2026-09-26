@@ -36,6 +36,21 @@ app.use(express.static(ROOT, {
 app.get("/thanks", (_req, res) => res.redirect(301, "/obrigado"));
 app.get("/obrigado", (_req, res) => res.sendFile(path.join(ROOT, "obrigado.html")));
 
+const APRESENTACAO_SEGMENTOS = new Set(["celulares", "autopecas", "assistencias"]);
+
+app.get("/apresentacao", (req, res) => {
+  const segmento = String(req.query.segmento || "").toLowerCase();
+  if (APRESENTACAO_SEGMENTOS.has(segmento)) return res.redirect(301, `/apresentacao/${segmento}`);
+  res.sendFile(path.join(ROOT, "apresentacao.html"));
+});
+
+app.get("/apresentacao/:segmento", (req, res) => {
+  if (!APRESENTACAO_SEGMENTOS.has(req.params.segmento)) {
+    return res.status(404).sendFile(path.join(ROOT, "404.html"));
+  }
+  res.sendFile(path.join(ROOT, "apresentacao", `${req.params.segmento}.html`));
+});
+
 app.get("/snack-retro", (_req, res) =>
   res.sendFile(path.join(ROOT, "snack-retro", "index.html")));
 app.get("/snack-retro/politica-de-privacidade", (_req, res) =>

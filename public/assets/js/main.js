@@ -18,6 +18,9 @@
     const scrollTop = $(".scroll-top");
     if (scrollTop) scrollTop.classList.toggle("is-visible", y > 400);
 
+    const presCta = $(".presentation-mobile-cta");
+    if (presCta) presCta.classList.toggle("is-visible", y > 500);
+
     const pos = y + 120;
     let current = sections[0]?.id;
     for (const s of sections) {
