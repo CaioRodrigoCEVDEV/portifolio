@@ -26,6 +26,9 @@ app.use(express.static(ROOT, {
     if (file.endsWith(".html")) {
       res.setHeader("Cache-Control", "public, max-age=0, must-revalidate");
     }
+    if (/\.(?:css|js)$/i.test(file)) {
+      res.setHeader("Cache-Control", "public, max-age=0, must-revalidate");
+    }
   }
 }));
 
